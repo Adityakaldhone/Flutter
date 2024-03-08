@@ -22,4 +22,6 @@ flutter:
   uses-material-design: true
 
   assets:
-  - assets/photos/aditya.png
+  - assets/photos/check.webp
+  - assets/photos/login2.webp
+  - assets/photos/icon.webp

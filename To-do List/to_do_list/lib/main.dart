@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_list/to-do%20list.dart';
-
+import 'package:to_do_list/Login.dart';
 
 void main() {
   runApp(const MainApp());
@@ -12,8 +11,9 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
-      home: Todolist(),
+      home: LoginPage(),
     );
   }
 }

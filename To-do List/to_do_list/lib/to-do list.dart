@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:to_do_list/Login.dart';
 
 class Todolist extends StatefulWidget {
   const Todolist({super.key});
@@ -36,7 +38,7 @@ class _TodolistState extends State<Todolist> {
     Color(0xffFAE8E8),
     Color(0xffE8EDFA),
     Color(0xffFAF9E8),
-    Color(0xffFAE8FA)
+    Color(0xffFAE8FA),
   ];
   List<ToDoListModel> task = [];
   int currentIndex = -1;
@@ -237,7 +239,6 @@ class _TodolistState extends State<Todolist> {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      backgroundColor: Color(0xff008B94),
                     ),
                   ),
                 )
@@ -252,7 +253,78 @@ class _TodolistState extends State<Todolist> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        elevation: 40,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+             DrawerHeader(
+              decoration: const BoxDecoration(
+                color:  Color(0xff02A7B1),
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        height: 120,
+                        width: 120,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.blue
+                          
+                        ),
+                        child: Image.asset(
+                          height: 100,
+                          width: 100,
+                          "assets/photos/icon.webp",
+                        ),
+                      ),
+                      
+                      const Column(
+                        children: [
+                          Text("Hello,",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),
+                          Text("Aditya",style: TextStyle(fontWeight: FontWeight.w400,fontStyle: FontStyle.italic,fontSize: 25),),
+                        ],
+                      ),
+                      
+                    ],
+                  ),
+                  
+                ],
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.edit),
+              title: const Text("Edit Profile"),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: const Icon(Icons.info),
+              title: const Text("About you"),
+              onTap: () {
+                
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text("Other Settings"),
+              onTap: () {
+                
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.logout),
+              title: const Text("SignOut"),
+              onTap: () {
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const LoginPage()));
+              },
+            )
+          ],
+        ),
+      ),
       appBar: AppBar(
+        centerTitle: true,
         toolbarHeight: 70,
         flexibleSpace: Container(
           width: double.infinity,
@@ -292,16 +364,10 @@ class _TodolistState extends State<Todolist> {
                             const SizedBox(
                               height: 20,
                             ),
-                            Container(
-                              height: 70,
-                              width: 70,
-                              decoration: const BoxDecoration(
-                                  color: Colors.white, shape: BoxShape.circle),
-                              child: Image.asset(
-                                  height: 60,
-                                  width: 60,
-                                  'assets/photos/aditya.png'),
-                            ),
+                            Image.asset(
+                                height: 60,
+                                width: 60,
+                                'assets/photos/check.webp'),
                             const SizedBox(
                               height: 20,
                             ),
@@ -379,6 +445,9 @@ class _TodolistState extends State<Todolist> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
+            _datecontroller.clear();
+            _titlecontroller.clear();
+            _descriptionController.clear();
             addTask(context);
           });
         },
