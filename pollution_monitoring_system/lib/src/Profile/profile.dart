@@ -1,6 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:pollution_monitoring_system/src/Profile/settings.dart';
+import 'package:pollution_monitoring_system/src/authentication/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,6 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.dark,
       home: WhatsAppHome(),
     );
   }
@@ -31,27 +35,37 @@ class WhatsAppHome extends StatelessWidget {
       backgroundColor: const Color(0xFF001F3F),
       body: Column(
         children: [
-          const Padding(
-            padding: EdgeInsets.all(15.0),
+          const SizedBox(height: 20,),
+          Padding(
+            padding:const EdgeInsets.all(15.0),
             child: Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 100,
                 ),
-                Icon(Icons.arrow_back, color: Colors.white, size: 30,),
-                Spacer(),
-                Text("Profile", style: TextStyle(color: Colors.white, fontSize: 25)),
-                Spacer(),
-                Text("Save", style: TextStyle(color: Colors.white, fontSize: 25)),
+                const Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                  size: 30,
+                ),
+                const Spacer(flex: 2,),
+                const Text("Profile",
+                    style: TextStyle(color: Colors.white, fontSize: 25)),
+                const Spacer(flex: 1,),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const LoginPage()));
+                  }, 
+                  child: const Text("LogOut", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),))
               ],
             ),
           ),
-           const Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Center(
                 child: ProfileAvatar(
-                  size: 120,
+                  size: 140,
                   hasEditButton: true,
                 ),
               )
@@ -61,24 +75,21 @@ class WhatsAppHome extends StatelessWidget {
             height: 20,
           ),
           Expanded(
-            child: SingleChildScrollView(
-              child: Container(
-                
-                height: 700,
-                width: double.infinity,
-                decoration: const BoxDecoration(
+            child: Container(
+              height: 700,
+              width: double.infinity,
+              decoration: const BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(50),topRight: Radius.circular(50))
-                ),
-                child: const HomeScreen(),
-              ),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(50),
+                      topRight: Radius.circular(50))),
+              child: const HomeScreen(),
             ),
           ),
         ],
       ),
     );
   }
-
 }
 
 class HomeScreen extends StatefulWidget {
@@ -118,28 +129,45 @@ class _HomeScreenState extends State<HomeScreen>
             labelColor: Colors.blue,
             unselectedLabelColor: Colors.grey,
             tabs: const [
-                 Padding(
-                padding: EdgeInsets.symmetric(horizontal: 0.0), // Adjust the horizontal spacing
-                child: Tab(child: Text("Details", style: TextStyle(fontSize: 20),),),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: 0.0), // Adjust the horizontal spacing
+                child: Tab(
+                  child: Text(
+                    "Details",
+                    style: TextStyle(fontSize: 20, color: Colors.black54),
+                  ),
+                ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.0), // Adjust the horizontal spacing
-                child: Tab(child: Text("Settings", style: TextStyle(fontSize: 20),),),
+                padding: EdgeInsets.symmetric(
+                    horizontal: 10.0), // Adjust the horizontal spacing
+                child: Tab(
+                  child: Text(
+                    "Settings",
+                    style: TextStyle(fontSize: 20, color: Colors.black54),
+                  ),
+                ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.0), // Adjust the horizontal spacing
-                child: Tab(child: Text("Forum", style: TextStyle(fontSize: 20),),),
+                padding: EdgeInsets.symmetric(
+                    horizontal: 10.0), // Adjust the horizontal spacing
+                child: Tab(
+                  child: Text(
+                    "About",
+                    style: TextStyle(fontSize: 20, color: Colors.black54),
+                  ),
+                ),
               ),
-          
             ],
           ),
           Expanded(
             child: TabBarView(
               controller: _tabController,
               children: const [
-                SingleChildScrollView(child: ChatScreen()),
+                SingleChildScrollView(child: DetailsScreen()),
                 CallsScreen(),
-                StatusScreen(),
+                AboutScreen(),
               ],
             ),
           ),
@@ -190,15 +218,17 @@ class _ProfileAvatarState extends State<ProfileAvatar> {
         ),
         if (widget.hasEditButton)
           Container(
-            margin: const EdgeInsets.only(bottom: 8, right: 8),
+            height: 40,
+            margin: const EdgeInsets.only(bottom: 0, right: 0),
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
-              color: Colors.blue,
+              color: Color.fromARGB(255, 190, 239, 228),
             ),
             child: IconButton(
               icon: const Icon(
                 Icons.edit,
-                color: Colors.white,
+                size: 20,
+                color: Colors.black,
               ),
               onPressed: _pickImage,
             ),
@@ -219,46 +249,267 @@ class _ProfileAvatarState extends State<ProfileAvatar> {
   }
 }
 
-class ChatScreen extends StatefulWidget {
-  const ChatScreen({super.key});
+class DetailsScreen extends StatefulWidget {
+  const DetailsScreen({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
   _ChatScreenState createState() => _ChatScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class _ChatScreenState extends State<DetailsScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      children: [
-        SizedBox(
-          height: 200,
-        ),
-        TextField(
-          decoration: InputDecoration(
-            hintText: 'Type your message...',
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 20,
           ),
-        ),
-        // Add other chat widgets as needed
-      ],
+          Row(
+            children: [
+              Text(
+                "userName",
+                style: GoogleFonts.lato(
+                  textStyle: const TextStyle(
+                    fontSize: 16.0, // Set the font size
+                    fontWeight: FontWeight.bold, // Set the font weight
+                    color: Colors.black54, // Set text color
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 2,
+          ),
+          Card(
+            elevation: 0,
+            child: Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    height: 50,
+                    decoration: const BoxDecoration(
+                        color: Color.fromARGB(255, 235, 238, 239),
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10))),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            "Aditya jitendra Kaldhone",
+                            style: GoogleFonts.lato(
+                              textStyle: const TextStyle(
+                                fontSize: 18.0, // Set the font size
+                                fontWeight:
+                                    FontWeight.bold, // Set the font weight
+                                color: Colors.black, // Set text color
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              Text(
+                "Email",
+                style: GoogleFonts.lato(
+                  textStyle: const TextStyle(
+                    fontSize: 16.0, // Set the font size
+                    fontWeight: FontWeight.bold, // Set the font weight
+                    color: Colors.black54, // Set text color
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Card(
+            elevation: 0,
+            child: Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    height: 50,
+                    decoration: const BoxDecoration(
+                        color: Color.fromARGB(255, 235, 238, 239),
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10))),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            "adityaKaldhone1357@gmail.com",
+                            style: GoogleFonts.lato(
+                              textStyle: const TextStyle(
+                                fontSize: 17.0, // Set the font size
+                                fontWeight:
+                                    FontWeight.bold, // Set the font weight
+                                color: Colors.black, // Set text color
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 2,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Card(
+            elevation: 0,
+            color: Colors.white,
+            child: Row(
+              children: [
+                Text(
+                  "Phone",
+                  style: GoogleFonts.lato(
+                    textStyle: const TextStyle(
+                      fontSize: 16.0, // Set the font size
+                      fontWeight: FontWeight.bold, // Set the font weight
+                      color: Colors.black54, // Set text color
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Card(
+            elevation: 0,
+            child: Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    height: 50,
+                    decoration: const BoxDecoration(
+                        color:  Color.fromARGB(255, 235, 238, 239),
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10))),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            "9653415546",
+                            style: GoogleFonts.lato(
+                              textStyle: const TextStyle(
+                                fontSize: 17.0, // Set the font size
+                                fontWeight:
+                                    FontWeight.bold, // Set the font weight
+                                color: Colors.black, // Set text color
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              Text(
+                "DOB",
+                style: GoogleFonts.lato(
+                  textStyle: const TextStyle(
+                    fontSize: 16.0, // Set the font size
+                    fontWeight: FontWeight.bold, // Set the font weight
+                    color: Colors.black54, // Set text color
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 2,
+          ),
+          Card(
+            elevation: 0,
+            child: Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    height: 50,
+                    decoration: const BoxDecoration(
+                        color: Color.fromARGB(255, 235, 238, 239),
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10))),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            "06/08/2002",
+                            style: GoogleFonts.lato(
+                              textStyle: const TextStyle(
+                                fontSize: 17.0, // Set the font size
+                                fontWeight:
+                                    FontWeight.bold, // Set the font weight
+                                color: Colors.black, // Set text color
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
 
-class StatusScreen extends StatefulWidget {
-  const StatusScreen({super.key});
+class AboutScreen extends StatefulWidget {
+  const AboutScreen({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
-  _StatusScreenState createState() => _StatusScreenState();
+  _AboutScreenState createState() => _AboutScreenState();
 }
 
-class _StatusScreenState extends State<StatusScreen> {
+class _AboutScreenState extends State<AboutScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Status Screen - Stateful"),
+    return Column(
+      children: [
+        Expanded(
+          child: Container(
+            
+          )
+          )
+      ],
     );
   }
 }
@@ -274,8 +525,6 @@ class CallsScreen extends StatefulWidget {
 class _CallsScreenState extends State<CallsScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Calls Screen - Stateful"),
-    );
+    return const SettingsModule();
   }
 }

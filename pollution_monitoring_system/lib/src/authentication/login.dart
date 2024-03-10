@@ -23,8 +23,10 @@ class _LoginPageState extends State<LoginPage> {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
         email: _usernameController.text,
         password: _passwordController.text,
+        
       );
       if (kDebugMode) {
+        
         print("User logged in: ${userCredential.user!.uid}");
       }
     } on FirebaseAuthException catch (e) {
@@ -123,7 +125,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           child: const Text(
             "Login",
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: 20, color: Colors.white),
           ),
         )
       ],

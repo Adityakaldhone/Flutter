@@ -21,12 +21,12 @@ class MainApp extends StatelessWidget {
         home: StreamBuilder(
             stream: FirebaseAuth.instance.authStateChanges(),
             builder: (context, snapshot) {
-              // if (snapshot.hasData) {
-              //   return const TaskMain();
-              // } else {
-              //   return const LoginPage();
-              // }
-              return const TaskMain();
+              if (snapshot.hasData) {
+                return const TaskMain();
+              } else {
+                return const LoginPage();
+              }
+             
             }));
   }
 }
