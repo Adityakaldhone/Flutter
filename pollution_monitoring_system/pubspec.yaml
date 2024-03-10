@@ -19,6 +19,7 @@ dependencies:
   charts_flutter: ^0.12.0
   fl_chart: ^0.66.2
   syncfusion_flutter_charts: ^21.2.4
+  image_picker: ^0.8.0
 
 dev_dependencies:
   flutter_test:
@@ -27,3 +28,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+  - assets/Profile_image.jpeg

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pollution_monitoring_system/src/Profile/profile.dart';
 import 'package:pollution_monitoring_system/src/dashboard/dashboard.dart';
 import 'package:pollution_monitoring_system/src/taskbar/taskbar.dart';
 
@@ -18,16 +19,14 @@ class _MyAppState extends State<TaskMain> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: TaskMain.title,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text(TaskMain.title),
-          backgroundColor: Colors.blueAccent,
-        ),
+       
         body: _buildPage(_currentIndex),
         bottomNavigationBar: SalomonBottomBar(
           currentIndex: _currentIndex,
@@ -76,7 +75,7 @@ class _MyAppState extends State<TaskMain> {
       case 2:
         return const DashBoard();
       case 3:
-        return const DashBoard();
+        return const WhatsAppHome();
       default:
         return Container(); // Empty container for unsupported index
     }
