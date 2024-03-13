@@ -3,7 +3,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
-const  API_KEY = "AIzaSyAHNihjnClNdy0rbMHEZprliZrfV_A0Fc4";
 
 
 class Home extends StatefulWidget {
