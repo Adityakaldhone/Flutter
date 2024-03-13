@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pollution_monitoring_system/src/Profile/profile.dart';
 import 'package:pollution_monitoring_system/src/dashboard/dashboard.dart';
+import 'package:pollution_monitoring_system/src/search/ai.dart';
 import 'package:pollution_monitoring_system/src/taskbar/taskbar.dart';
 
 class TaskMain extends StatefulWidget {
@@ -73,7 +74,7 @@ class _MyAppState extends State<TaskMain> {
       case 1:
         return const DashBoard();
       case 2:
-        return const DashBoard();
+        return  const Home();
       case 3:
         return const WhatsAppHome();
       default:

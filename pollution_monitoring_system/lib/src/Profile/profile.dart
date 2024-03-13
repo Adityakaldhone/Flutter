@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pollution_monitoring_system/src/Profile/settings.dart';
 import 'package:pollution_monitoring_system/src/authentication/login.dart';
 
@@ -41,7 +42,7 @@ class WhatsAppHome extends StatelessWidget {
             child: Row(
               children: [
                 const SizedBox(
-                  height: 100,
+                  height: 80,
                 ),
                 const Icon(
                   Icons.arrow_back,
@@ -53,9 +54,9 @@ class WhatsAppHome extends StatelessWidget {
                     style: TextStyle(color: Colors.white, fontSize: 25)),
                 const Spacer(flex: 1,),
                 TextButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const LoginPage()));
-                  }, 
+                  onPressed: () async {
+                await FirebaseAuth.instance.signOut();
+              },
                   child: const Text("LogOut", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),))
               ],
             ),
@@ -217,20 +218,25 @@ class _ProfileAvatarState extends State<ProfileAvatar> {
                 ),
         ),
         if (widget.hasEditButton)
-          Container(
-            height: 40,
-            margin: const EdgeInsets.only(bottom: 0, right: 0),
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: Color.fromARGB(255, 190, 239, 228),
-            ),
-            child: IconButton(
-              icon: const Icon(
-                Icons.edit,
-                size: 20,
-                color: Colors.black,
+          Card(
+            elevation: 5,
+            color: Colors.white,
+            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(28))),
+            child: Container(
+              height: 44,
+              margin: const EdgeInsets.only(bottom: 0, right: 0),
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color:Colors.white,
               ),
-              onPressed: _pickImage,
+              child: IconButton(
+                icon: const Icon(
+                  Icons.edit,
+                  size: 20,
+                  color: Colors.black,
+                ),
+                onPressed: _pickImage,
+              ),
             ),
           ),
       ],

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:pollution_monitoring_system/src/Profile/edit_profile.dart';
+import 'package:pollution_monitoring_system/src/Profile/help.dart';
 
 class SettingsModule extends StatefulWidget {
   const SettingsModule({super.key});
@@ -10,6 +12,8 @@ class SettingsModule extends StatefulWidget {
 
 class _SettingsModuleState extends State<SettingsModule> {
   bool flag = true;
+  final TextEditingController nameController = TextEditingController();
+  
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,7 +24,10 @@ class _SettingsModuleState extends State<SettingsModule> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: GestureDetector(
-            onTap: () {},
+            onTap: () {
+              //editProfile();
+              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const AuthenticationSignUp() ));
+            },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -114,10 +121,11 @@ class _SettingsModuleState extends State<SettingsModule> {
                                   onRatingUpdate: (double value) {}),
                               const SizedBox(height: 180),
                               ElevatedButton(
+                                
                                   style: const ButtonStyle(
-                                    backgroundColor: MaterialStatePropertyAll(
-                                      Color(0xFF001F3F),
-                                    ),
+                                    
+                                    elevation: MaterialStatePropertyAll(5),
+                                    backgroundColor: MaterialStatePropertyAll(Color.fromARGB(255, 228, 221, 221))
                                   ),
                                   onPressed: () {
                                     showDialog<void>(
@@ -143,7 +151,7 @@ class _SettingsModuleState extends State<SettingsModule> {
                                   child: const Text(
                                     "Submit",
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: 40),
+                                        color: Colors.black, fontSize: 30),
                                   )),
                             ],
                           ),
@@ -212,7 +220,7 @@ class _SettingsModuleState extends State<SettingsModule> {
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
                       height: 55,
-                      width: 45,
+                      width: 42,
                       decoration: const BoxDecoration(
                           color: Color.fromARGB(255, 243, 240, 240),
                           borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -230,7 +238,9 @@ class _SettingsModuleState extends State<SettingsModule> {
                     flex: 9,
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => ChatPage()));
+                    },
                     icon: const Icon(
                       Icons.chevron_right,
                       size: 40,
