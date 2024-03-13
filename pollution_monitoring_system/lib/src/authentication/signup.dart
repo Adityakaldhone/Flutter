@@ -31,7 +31,7 @@ class _SignupPageState extends State<SignupPage> {
               TextButton(
                 onPressed: () {
                   // Close the dialog
-                  Navigator.of(context).pop();
+                  Navigator.pop(context);
                 },
                 child: const Text('Close'),
               ),
@@ -85,6 +85,7 @@ class _SignupPageState extends State<SignupPage> {
             children: <Widget>[
               Column(
                 children: <Widget>[
+                  
                   const SizedBox(height: 60.0),
                   const Text(
                     "Sign up",
