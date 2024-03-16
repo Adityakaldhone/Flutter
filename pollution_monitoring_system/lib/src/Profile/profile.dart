@@ -4,8 +4,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pollution_monitoring_system/src/Profile/settings.dart';
-import 'package:pollution_monitoring_system/src/authentication/login.dart';
-
 void main() {
   runApp(const MyApp());
 }

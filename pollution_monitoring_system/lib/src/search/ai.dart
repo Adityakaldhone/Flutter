@@ -3,7 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
-
+const API_KEY = "AIzaSyAqwHUXW9OfPpTHTgNxWVzmgcrXO5_YJ8w";
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -13,9 +13,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   late GenerativeModel _model;
-  late ChatSession _chat;
+  late ChatSession? _chat;
   final TextEditingController _textController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
   bool _loading = false;
@@ -26,25 +25,23 @@ class _HomeState extends State<Home> {
     _initializeChat();
   }
 
-  void initializeModule () async{
-
+  void initializeModule() async {
     await dotenv.load(fileName: ".env");
-
   }
+
   Future<void> _initializeChat() async {
-      initializeModule();
+    initializeModule();
     await dotenv.load(fileName: ".env");
 
-    _model = GenerativeModel(model: "gemini-pro", apiKey: dotenv.env['API_KEY']!);
+    _model = GenerativeModel(model: "gemini-pro", apiKey: API_KEY);
     _chat = _model.startChat();
   }
 
   @override
   Widget build(BuildContext context) {
-    bool hasApiKey = dotenv.env['API_KEY'] != null && dotenv.env['API_KEY']!.isNotEmpty;
+    bool hasApiKey = API_KEY.isNotEmpty;
 
     return Scaffold(
-
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -52,19 +49,21 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              child: hasApiKey
+              child: hasApiKey && _chat != null
                   ? ListView.builder(
                       controller: _scrollController,
                       itemBuilder: (context, idx) {
-                        final content = _chat.history.toList()[idx];
-                        final text =
-                            content.parts.whereType<TextPart>().map<String>((e) => e.text).join('');
+                        final content = _chat!.history.toList()[idx];
+                        final text = content.parts
+                            .whereType<TextPart>()
+                            .map<String>((e) => e.text)
+                            .join('');
                         return MessageWidget(
                           text: text,
                           isFromUser: content.role == 'user',
                         );
                       },
-                      itemCount: _chat.history.length,
+                      itemCount: _chat!.history.length,
                     )
                   : ListView(
                       children: const [
@@ -135,7 +134,7 @@ class _HomeState extends State<Home> {
     setState(() => _loading = true);
 
     try {
-      final response = await _chat.sendMessage(Content.text(message));
+      final response = await _chat!.sendMessage(Content.text(message));
       final text = response.text;
       if (text == null) {
         debugPrint('No response from API.');
@@ -164,7 +163,8 @@ class MessageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: isFromUser ? MainAxisAlignment.end : MainAxisAlignment.start,
+      mainAxisAlignment:
+          isFromUser ? MainAxisAlignment.end : MainAxisAlignment.start,
       children: [
         Flexible(
           child: Container(

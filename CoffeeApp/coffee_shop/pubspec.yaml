@@ -1,0 +1,50 @@
+name: coffee_shop
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.3.1 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_fonts: ^6.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  flutter_launcher_icons: "^0.13.1"
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/splash.png"
+
+flutter:
+  uses-material-design: true
+
+  assets:
+  - assets/cofee.jpg
+  - assets/Onboarding.png
+  - assets/coffee.jpg
+  - assets/Cappuccino.png
+  - assets/coffeeCapucino_1.jpg
+  - assets/Cold Brew.png
+  - assets/Expresso.png
+  - assets/coffee2.png
+  - assets/fire.png
+  - assets/specialOffer.png
+  - assets/coldbrew_assets/ColdBrew1.jpg
+  - assets/coldbrew_assets/ColdBrew2jpg.jpeg
+  - assets/coldbrew_assets/ColdBrew3.jpg
+  - assets/coldbrew_assets/ColdBrew4.jpg
+  - assets/Espresso/Espresso1.webp
+  - assets/Espresso/Espresso2.jpg
+  - assets/Espresso/Espresso3.webp
+  - assets/Espresso/Espresso4.jpeg
+  - assets/Espresso/Espresso5.jpeg
+  - assets/addtocart_assets/emojione_chocolate-bar.png
+  - assets/addtocart_assets/openmoji_roasted-coffee-bean.png
+  - assets/splash.png
