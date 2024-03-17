@@ -1,12 +1,8 @@
 import 'package:coffee_shop/add_to_cart.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 int currentIndex = -1;
-
-
 
 List<Map<String, String>> type = [
   {'Name1': "With Chocolate", 'Orders': '1500rs'},
@@ -16,9 +12,8 @@ List<Map<String, String>> type = [
 ];
 //mixin Name1 {}
 
-
 List<Map<String, dynamic>> imagesList = [
-  {'image1': "assets/coffeeCapucino_1.jpg", 'name': 'Cappuccino', 'index' : '0'},
+  {'image1': "assets/coffeeCapucino_1.jpg", 'name': 'Cappuccino', 'index': '0'},
   {'image1': "assets/coffee2.png", 'name': 'Cappuccino'},
   {'image1': "assets/coffeeCapucino_1.jpg", 'name': 'Cappuccino'},
   {
@@ -38,7 +33,7 @@ List<Map<String, String>> coldbrew1 = [
   }
 ];
 mixin image2 {}
-List<Map<String, String>> coldBrew2 = [
+List<Map<String, dynamic>> coldBrew2 = [
   {'Name2': "With Chocolate", 'Orders2': '1500rs'},
   {'Name2': "With Low Fat Milk", 'Orders2': '150rs'},
   {'Name2': "with Extra Milk", 'Orders2': '299rs'},
@@ -60,7 +55,7 @@ List<Map<String, String>> Espresso1 = [
   }
 ];
 mixin image3 {}
-List<Map<String, String>> Espresso2 = [
+List<Map<String, dynamic>> Espresso2 = [
   {'Name3': "With Chocolate", 'Orders2': '1500rs'},
   {'Name3': "With Low Fat Milk", 'Orders2': '150rs'},
   {'Name3': "with Extra Milk", 'Orders2': '299rs'},
@@ -242,7 +237,7 @@ class ColdBrewCoffee extends StatefulWidget {
 class _ColdBrewCoffeeState extends State<ColdBrewCoffee> {
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
+    return Scaffold(
         body: SingleChildScrollView(
       child: Column(
         children: [
@@ -271,24 +266,27 @@ class _ColdBrewCoffeeState extends State<ColdBrewCoffee> {
               ],
             ),
           ),
-               InkWell(
-            onTap: (){
-                
+          InkWell(
+            onTap: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          const AddToCartColdBrew()));
             },
             child: Card(
-              shape:const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(23))
-              ),
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(23))),
               elevation: 10,
               child: Container(
-                
                 decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(20))
-                ),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
                 child: Row(
                   children: [
-                    const SizedBox(width: 5,),
+                    const SizedBox(
+                      width: 5,
+                    ),
                     Container(
                       height: 150,
                       width: 170,
@@ -314,7 +312,8 @@ class _ColdBrewCoffeeState extends State<ColdBrewCoffee> {
                             width: 80,
                             decoration: const BoxDecoration(
                                 shape: BoxShape.rectangle,
-                                borderRadius: BorderRadius.all(Radius.circular(15)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15)),
                                 color: Colors.brown),
                             child: const Row(
                               children: [
@@ -400,23 +399,25 @@ class _CappucinoCoffeeState extends State<CappucinoCoffee> {
             ),
           ),
           InkWell(
-            onTap: (){
-               Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => AddToCart()));
+            onTap: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => AddToCart()));
             },
             child: Card(
-              shape:const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(23))
-              ),
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(23))),
               elevation: 10,
               child: Container(
-                
                 decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(20))
-                ),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
                 child: Row(
                   children: [
-                    const SizedBox(width: 5,),
+                    const SizedBox(
+                      width: 5,
+                    ),
                     Container(
                       height: 150,
                       width: 170,
@@ -442,7 +443,8 @@ class _CappucinoCoffeeState extends State<CappucinoCoffee> {
                             width: 80,
                             decoration: const BoxDecoration(
                                 shape: BoxShape.rectangle,
-                                borderRadius: BorderRadius.all(Radius.circular(15)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15)),
                                 color: Colors.brown),
                             child: const Row(
                               children: [
@@ -498,7 +500,7 @@ class Espresso extends StatefulWidget {
 class _EspressoState extends State<Espresso> {
   @override
   Widget build(BuildContext context) {
-      return Scaffold(
+    return Scaffold(
         body: SingleChildScrollView(
       child: Column(
         children: [
@@ -528,23 +530,20 @@ class _EspressoState extends State<Espresso> {
             ),
           ),
           InkWell(
-            onTap: (){
-
-            },
+            onTap: () {},
             child: Card(
-              shape:const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(23))
-              ),
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(23))),
               elevation: 10,
               child: Container(
-                
                 decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(20))
-                ),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
                 child: Row(
                   children: [
-                    const SizedBox(width: 5,),
+                    const SizedBox(
+                      width: 5,
+                    ),
                     Container(
                       height: 150,
                       width: 170,
@@ -570,7 +569,8 @@ class _EspressoState extends State<Espresso> {
                             width: 80,
                             decoration: const BoxDecoration(
                                 shape: BoxShape.rectangle,
-                                borderRadius: BorderRadius.all(Radius.circular(15)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15)),
                                 color: Colors.brown),
                             child: const Row(
                               children: [
@@ -621,6 +621,7 @@ class HorizontalListViewBuilder extends StatefulWidget {
   State<HorizontalListViewBuilder> createState() =>
       _HorizontalListViewBuilderState();
 }
+
 //class for cappuccino
 class _HorizontalListViewBuilderState extends State<HorizontalListViewBuilder> {
   @override
@@ -646,11 +647,10 @@ class _HorizontalListViewBuilderState extends State<HorizontalListViewBuilder> {
                     //color: Colors.white,
                     elevation: 10,
                     child: Container(
-                     // color: Colors.white,
+                      // color: Colors.white,
                       decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(30))
-                      ),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
                       child: Column(
                         children: [
                           Container(
@@ -658,10 +658,11 @@ class _HorizontalListViewBuilderState extends State<HorizontalListViewBuilder> {
                             height: 130,
                             width: 200,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(20)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
                                 image: DecorationImage(
-                                    image:
-                                        AssetImage(imagesList[index]['image1']!),
+                                    image: AssetImage(
+                                        imagesList[index]['image1']!),
                                     fit: BoxFit.cover)),
                             child: Padding(
                               padding: const EdgeInsets.all(7.0),
@@ -712,7 +713,8 @@ class _HorizontalListViewBuilderState extends State<HorizontalListViewBuilder> {
                               Text(
                                 type[index]['Name1']!,
                                 style: const TextStyle(
-                                    fontWeight: FontWeight.normal, fontSize: 10),
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 10),
                               ),
                               const Spacer(
                                 flex: 12,
@@ -728,14 +730,19 @@ class _HorizontalListViewBuilderState extends State<HorizontalListViewBuilder> {
                               Text(
                                 type[index]['Orders']!,
                                 style: const TextStyle(
-                                    fontWeight: FontWeight.normal, fontSize: 19),
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 19),
                               ),
                               const Spacer(
                                 flex: 8,
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => AddToCart()));
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              AddToCart()));
                                 },
                                 child: Container(
                                   height: 40,
@@ -745,7 +752,12 @@ class _HorizontalListViewBuilderState extends State<HorizontalListViewBuilder> {
                                   ),
                                   child: IconButton(
                                       onPressed: () {
-                                        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => AddToCart()));
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        AddToCart()));
                                       },
                                       icon: const Icon(
                                         Icons.add,
@@ -771,7 +783,6 @@ class _HorizontalListViewBuilderState extends State<HorizontalListViewBuilder> {
 }
 //class for Coldbrew
 
-
 class HorizontalListViewBuilderForColBrew extends StatefulWidget {
   const HorizontalListViewBuilderForColBrew({super.key});
 
@@ -779,34 +790,35 @@ class HorizontalListViewBuilderForColBrew extends StatefulWidget {
   State<HorizontalListViewBuilderForColBrew> createState() =>
       _HorizontalListViewBuilderForColBrewState();
 }
-class _HorizontalListViewBuilderForColBrewState extends State<HorizontalListViewBuilderForColBrew> {
+
+class _HorizontalListViewBuilderForColBrewState
+    extends State<HorizontalListViewBuilderForColBrew> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 270,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: imagesList.length,
+        itemCount: coldBrew2.length,
         itemBuilder: (BuildContext context, int index) {
+          currentIndex = index;
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-              SizedBox(
+                SizedBox(
                   height: 260,
                   width: 225,
                   child: Card(
                     color: Colors.white,
                     shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(25))
-                    ),
+                        borderRadius: BorderRadius.all(Radius.circular(25))),
                     elevation: 10,
                     child: Container(
-                     // color: Colors.white,
+                      // color: Colors.white,
                       decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(30))
-                      ),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
                       child: Column(
                         children: [
                           Container(
@@ -814,7 +826,8 @@ class _HorizontalListViewBuilderForColBrewState extends State<HorizontalListView
                             height: 130,
                             width: 200,
                             decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.all(Radius.circular(20)),
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(20)),
                                 image: DecorationImage(
                                     image:
                                         AssetImage(coldbrew1[index]['image2']!),
@@ -868,7 +881,8 @@ class _HorizontalListViewBuilderForColBrewState extends State<HorizontalListView
                               Text(
                                 coldBrew2[index]['Name2']!,
                                 style: const TextStyle(
-                                    fontWeight: FontWeight.normal, fontSize: 10),
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 10),
                               ),
                               const Spacer(
                                 flex: 12,
@@ -884,7 +898,8 @@ class _HorizontalListViewBuilderForColBrewState extends State<HorizontalListView
                               Text(
                                 coldBrew2[index]['Orders2']!,
                                 style: const TextStyle(
-                                    fontWeight: FontWeight.normal, fontSize: 19),
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 19),
                               ),
                               const Spacer(
                                 flex: 8,
@@ -898,7 +913,14 @@ class _HorizontalListViewBuilderForColBrewState extends State<HorizontalListView
                                     shape: BoxShape.circle,
                                   ),
                                   child: IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (BuildContext
+                                                        context) =>
+                                                    const AddToCartColdBrew()));
+                                      },
                                       icon: const Icon(
                                         Icons.add,
                                         size: 20,
@@ -930,34 +952,35 @@ class HorizontalListViewBuilderEspresso extends StatefulWidget {
   State<HorizontalListViewBuilderEspresso> createState() =>
       _HorizontalListViewBuilderEspressoState();
 }
-class _HorizontalListViewBuilderEspressoState extends State<HorizontalListViewBuilderEspresso> {
+
+class _HorizontalListViewBuilderEspressoState
+    extends State<HorizontalListViewBuilderEspresso> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 270,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: imagesList.length,
+        itemCount: Espresso2.length,
         itemBuilder: (BuildContext context, int index) {
+          currentIndex = index;
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-              SizedBox(
+                SizedBox(
                   height: 260,
                   width: 225,
                   child: Card(
                     color: Colors.white,
                     shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(25))
-                    ),
+                        borderRadius: BorderRadius.all(Radius.circular(25))),
                     elevation: 10,
                     child: Container(
-                     // color: Colors.white,
+                      // color: Colors.white,
                       decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(30))
-                      ),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
                       child: Column(
                         children: [
                           Container(
@@ -965,7 +988,8 @@ class _HorizontalListViewBuilderEspressoState extends State<HorizontalListViewBu
                             height: 130,
                             width: 200,
                             decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.all(Radius.circular(20)),
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(20)),
                                 image: DecorationImage(
                                     image:
                                         AssetImage(Espresso1[index]['image3']!),
@@ -1019,7 +1043,8 @@ class _HorizontalListViewBuilderEspressoState extends State<HorizontalListViewBu
                               Text(
                                 Espresso2[index]['Name3']!,
                                 style: const TextStyle(
-                                    fontWeight: FontWeight.normal, fontSize: 10),
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 10),
                               ),
                               const Spacer(
                                 flex: 12,
@@ -1035,13 +1060,20 @@ class _HorizontalListViewBuilderEspressoState extends State<HorizontalListViewBu
                               Text(
                                 Espresso2[index]['Orders2']!,
                                 style: const TextStyle(
-                                    fontWeight: FontWeight.normal, fontSize: 19),
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 19),
                               ),
                               const Spacer(
                                 flex: 8,
                               ),
                               GestureDetector(
-                                onTap: () {},     
+                                onTap: () {
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              const AddToCartEspresso()));
+                                },
                                 child: Container(
                                   height: 40,
                                   decoration: const BoxDecoration(
@@ -1049,7 +1081,14 @@ class _HorizontalListViewBuilderEspressoState extends State<HorizontalListViewBu
                                     shape: BoxShape.circle,
                                   ),
                                   child: IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (BuildContext
+                                                        context) =>
+                                                    const AddToCartEspresso()));
+                                      },
                                       icon: const Icon(
                                         Icons.add,
                                         size: 20,
